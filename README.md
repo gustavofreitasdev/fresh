@@ -1,45 +1,47 @@
 # Fresh Landing page
-Fresh is a one page landing page starter built by [Css Ninja Studio](https://cssninja.io) . Fresh is licensed under the MIT license.
+Fresh é um acionador de partida de página de destino de uma página criado pelo [Css Ninja Studio](https://cssninja.io). Fresh é licenciado sob a licença MIT.
 
-You can access the demo [here](https://cssninjastudio.github.io./).
+Você pode acessar a demonstração [aqui](https://cssninjastudio.github.io./).
+Este projeto é uma modificação do projeto inicial, trazendo uma outra forma de organizar o código.
 
-## Details
+## Detalhes
+Fresh é desenvolvido com o [framework Bulma css](https://bulma.io)
 
-Fresh is developed with the [Bulma css framework](https://bulma.io)
+**Versão 2.0**
 
-**Version 2.0**
+## Uso
+Fresh agora é um iniciador de Bulma totalmente empacotado com **npm** e **gulp**. Bulma foi atualizado para a versão mais recente **0.7**.
+* Clone ou faça o download do repositório
+* Execute `npm install`
+* Execute `gulp full-build`
+* Execute `gulp default`
 
-## Usage
-Fresh is now a Bulma starter fully bundled with **npm** and **gulp**. Bulma has been upgrade to latest version **0.7**.
+## Grandes Mudanças
+* Tudo agora é tratado por gulp e npm
+* Versão Bulma atualizada para 0,7
+* Bulma source sass é editável (note que a variável `@ widescreen` foi configurada para false)
+* A biblioteca do controle deslizante do painel foi removida. Barra lateral completamente reescrita sem qualquer plugin.
+* Removidas classes não usadas e scss refatorados
+* Adicionado mais parciais scss para melhor manutenibilidade do código
+* Introduziu o motor de templates Panini. Saiba mais sobre a Panini aqui: https://github.com/zurb/panini
+* Processo de criação e observação totalmente automatizado, integração com sincronização do navegador
+* Retrabalho da barra de ferramentas desde a suspensão do elemento `.nav` em favor de` .navbar`.
+* Exibição responsiva otimizada para celulares e tablets.
+* Mudanças na organização de pastas.
+* Tradução para **pt-BR**, tanto comentários quanto arquivos.
+* Compactação e Mimificação de arquivos JS e de Imagens.
+* Melhor organização do código.
 
-* Clone or download the repo
-* Run `npm install`
-* Run `gulp build`
-* Run `gulp default`
+## Problemas
 
-## Major changes
+Se você encontrou um problema ou um bug, você pode denunciá-lo na seção de problemas deste repositório. Por favor, tente seguir estas orientações simples para relatar seu problema:
 
-* Everything is now handled by gulp and npm
-* Bulma version upgraded to 0.7
-* Bulma source sass is editable (note that the `@widescreen` variable has been set to false)
-* Panel slider library has been removed. Sidebar completely rewritten without any plugin.
-* Removed unused classes and refactored scss
-* Added more scss partials for better code maintainability
-* Introduced Panini templating engine. Learn more about Panini here: https://github.com/zurb/panini
-* Fully automated build and watch process, integration with browser sync
-* Navbar rework since deprecation of `.nav` element in favor of `.navbar`.
-* Optimized responsive display for mobile and tablets.
+* Definição do problema
+* Comportamento esperado
+* Comportamento real
+* Passos para reproduzir
+* Já tentou correções (se relevante)
 
-## Issues
+## Mais
 
-If you've found an issue or a bug, you can report it in the issues section of this repository. Please try to follow these simple guidelines to report your issue:
-
-* Issue definition
-* Expected behaviour
-* Actual behaviour
-* steps to reproduce
-* Already tried fixes (if relevant)
-
-## More
-
-You can find more themes and ressources at  [Css Ninja Studio](https://cssninja.io).
+Você pode encontrar mais temas e recursos no [Css Ninja Studio](https://cssninja.io).
