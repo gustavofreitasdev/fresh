@@ -11,6 +11,7 @@ var panini = require('panini');
 var concat = require('gulp-concat');
 var jsmin = require('gulp-jsmin');
 var rename = require('gulp-rename');
+var imagemin = require('gulp-imagemin');
 var port = process.env.SERVER_PORT || 8080;
 var nodepath =  './node_modules/';
 
@@ -160,6 +161,7 @@ gulp.task('copy-js', function() {
 /* Copiando imagens para produção */
 gulp.task('copy-images', function() {
     gulp.src('./dev/images/**/*')
+        .pipe(imagemin())
         .pipe(gulp.dest('./_site/assets/images/'));
 });
 
