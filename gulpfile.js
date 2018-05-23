@@ -167,5 +167,6 @@ gulp.task('copy-images', function() {
 
 /* ============== Configurações Gerais ============== */
 gulp.task('init', ['setupBulma']);
-gulp.task('build', ['clean','copy','compile-js', 'copy-js', 'compile-sass', 'compile-scss', 'compile-html', 'copy-images']);
+gulp.task('full-build', ['clean','copy','compile-js', 'copy-js', 'compile-sass', 'compile-scss', 'compile-html', 'copy-images'])
+gulp.task('build', ['copy', 'copy-js', 'compile-sass', 'compile-scss', 'compile-html', 'copy-images']);
 gulp.task('default', ['server', 'watch']);
