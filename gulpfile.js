@@ -9,6 +9,8 @@ var rimraf = require('rimraf').sync;
 var browser = require('browser-sync');
 var panini = require('panini');
 var concat = require('gulp-concat');
+var jsmin = require('gulp-jsmin');
+var rename = require('gulp-rename');
 var port = process.env.SERVER_PORT || 8080;
 var nodepath =  './node_modules/';
 
@@ -143,12 +145,16 @@ gulp.task('compile-js', function() {
         nodepath + 'feather-icons/dist/feather.min.js',
     ])
         .pipe(concat('libs.js'))
+        .pipe(jsmin())
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('./_site/assets/js/'));
 });
 /* Compilando arquvios JS da Aplicação */
 gulp.task('copy-js', function() {
     gulp.src('./dev/assets/js/**/*.js')
         .pipe(concat('app.js'))
+        .pipe(jsmin())
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('./_site/assets/js/'));
 });
 /* Copiando imagens para produção */
