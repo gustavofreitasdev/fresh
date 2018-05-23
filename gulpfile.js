@@ -42,6 +42,11 @@ gulp.task('reset', function() {
 gulp.task('clean', function() {
     rimraf('_site');
 });
+/* Removendo todos os arquivos de produção e bibliotêcas do Node */
+gulp.task('full-clean', function(){
+    rimraf('./_site');
+    rimraf('./node_modules');
+});
 /* Configurando framework Bulma */
 gulp.task('setupBulma', function() {
     //Get Bulma from node modules
