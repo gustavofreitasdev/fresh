@@ -3,7 +3,7 @@ Fresh é um acionador de partida de página de destino de uma página criado pel
 
 Você pode acessar a demonstração [aqui](https://cssninjastudio.github.io./).
 
-Este projeto (Fresh Gusta) é uma modificação do projeto inicial, trazendo uma outra forma de organizar o código.
+Este projeto (**Fresh-Gusta**) é uma modificação do projeto inicial, trazendo uma outra forma de organizar o código.
 
 ## Detalhes
 Fresh é desenvolvido com o [framework Bulma css](https://bulma.io)
