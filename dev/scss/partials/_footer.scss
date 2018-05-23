@@ -1,0 +1,41 @@
+/* ==========================================================================
+Fresh Footer
+========================================================================== */
+.footer {
+    padding: 1em;
+
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+
+    .content > aside > ul{
+        list-style-type: none;
+        display: inline-block;
+        
+        li{
+            float: left;
+
+            .cor-linkedin{
+                color: #0e76a8;
+            }
+            .cor-github{
+                color: #24292e;
+            }
+            .cor-twitter{
+                color: #00aced;
+            }
+            .cor-skype{
+                color: #00aff0;
+            }
+            i{
+                font-size: 1.5em;
+            }
+        }
+    }
+
+}
+
+.is-horizontal-center {
+    justify-content: center;
+  }

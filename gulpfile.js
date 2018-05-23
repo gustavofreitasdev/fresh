@@ -10,68 +10,63 @@ var browser = require('browser-sync');
 var panini = require('panini');
 var concat = require('gulp-concat');
 var port = process.env.SERVER_PORT || 8080;
-var nodepath =  'node_modules/';
+var nodepath =  './node_modules/';
 
-// Starts a BrowerSync instance
+/* ============== Tarefas de Suporte ============== */
+/* Iniciando instância BrowerSync */
 gulp.task('server', ['build'], function(){
     browser.init({server: './_site', port: port});
 });
-
-// Watch files for changes
+/* Verificando se algum arquivo foi modificado */
 gulp.task('watch', function() {
-    gulp.watch('scss/**/*', ['compile-scss', browser.reload]);
-    gulp.watch('sass/**/*', ['compile-sass', browser.reload]);
-    gulp.watch('js/**/*', ['copy-js', browser.reload]);
-    gulp.watch('html/pages/**/*', ['compile-html']);
-    gulp.watch('images/**/*', ['copy-images', browser.reload]);
-    gulp.watch(['html/{layouts,includes,helpers,data}/**/*'], ['compile-html:reset','compile-html']);
+    gulp.watch('./dev/scss/**/*', ['compile-scss', browser.reload]);
+    gulp.watch('./dev/sass/**/*', ['compile-sass', browser.reload]);
+    gulp.watch('./dev/js/**/*', ['copy-js', browser.reload]);
+    gulp.watch('./dev/html/pages/**/*', ['compile-html']);
+    gulp.watch('./dev/images/**/*', ['copy-images', browser.reload]);
+    gulp.watch(['./dev/html/{layouts,includes,helpers,data}/**/*'], ['compile-html:reset','compile-html']);
     gulp.watch(['./src/{layouts,partials,helpers,data}/**/*'], [panini.refresh]);
 });
-
-// Erases the dist folder
+/* Reiniciando pastas de desenvolvimento */
 gulp.task('reset', function() {
-    rimraf('bulma/*');
-    rimraf('scss/*');
-    rimraf('assets/css/*');
-    rimraf('assets/fonts/*');
-    rimraf('images/*');
+    rimraf('./dev/assets/bulma/*');
+    rimraf('./dev/assets/scss/*');
+    rimraf('./dev/assets/css/*');
+    rimraf('./dev/assets/fonts/*');
+    rimraf('./dev/images/*');
 });
-
-// Erases the dist folder
+/* Removendo pasta de produção */
 gulp.task('clean', function() {
     rimraf('_site');
 });
-
-// Copy Bulma filed into Bulma development folder
+/* Configurando framework Bulma */
 gulp.task('setupBulma', function() {
     //Get Bulma from node modules
-    gulp.src([nodepath + 'bulma/*.sass']).pipe(gulp.dest('bulma/'));
-    gulp.src([nodepath + 'bulma/**/*.sass']).pipe(gulp.dest('bulma/'));
+    gulp.src([nodepath + './dev/assets/bulma/*.sass']).pipe(gulp.dest('./dev/assets/bulma/'));
+    gulp.src([nodepath + './dev/assets/bulma/**/*.sass']).pipe(gulp.dest('./dev/assets/bulma/'));
 });
 
-// Copy assets
+/* ============== Tarefas para CSS, JS, HTML e Imagens ============== */
+/* Copia arquivos CSS e de Fonts para pasta final do Site */
 gulp.task('copy', function() {
-    //Copy other external css assets
-    gulp.src(['assets/css/*.css']).pipe(gulp.dest('_site/assets/css/'));
-    //Copy other external font assets
-    gulp.src(['assets/fonts/*']).pipe(gulp.dest('_site/assets/fonts/'));
+    // Copiando arquivos CSS externos
+    gulp.src(['./dev/assets/css/*.css']).pipe(gulp.dest('_site/assets/css/'));
+    // Copiando Fonts externas
+    gulp.src(['./dev/assets/fonts/*']).pipe(gulp.dest('_site/assets/fonts/'));
 });
-
-//Theme Sass variables
+/* Variável para trabalhar com SASS */
 var sassOptions = {
     errLogToConsole: true,
     outputStyle: 'compressed',
     includePaths: [nodepath + 'bulma/sass']
 };
-
-//Theme Scss variables
+/* Variável para trabalhar com SCSS */
 var scssOptions = {
     errLogToConsole: true,
     outputStyle: 'compressed',
-    includePaths: ['./scss/partials']
+    includePaths: ['./dev/scss/partials']
 };
-
-// Compile Bulma Sass
+/* Compilando SASS do Bulma */
 gulp.task('compile-sass', function () {
     var processors = [
         mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.is-true-hover ' }),
@@ -90,15 +85,14 @@ gulp.task('compile-sass', function () {
         //cssnano(),
     ];
     //Watch me get Sassy
-    return gulp.src('./bulma/bulma.sass')
+    return gulp.src('./dev/assets/bulma/bulma.sass')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(postcss(processors))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./_site/assets/css/'));
 });
-
-// Compile Theme Scss
+/* Copilando SCSS (Tema) da Aplicação */
 gulp.task('compile-scss', function () {
     var processors = [
         mq4HoverShim.postprocessorFor({ hoverSelectorPrefix: '.is-true-hover ' }),
@@ -117,55 +111,53 @@ gulp.task('compile-scss', function () {
         //cssnano(),
     ];
     //Watch me get Sassy
-    return gulp.src('./scss/core.scss')
+    return gulp.src('./dev/scss/core.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(postcss(processors))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./_site/assets/css/'));
 });
-
-// Compile Html
+/* Copilando HTML */
 gulp.task('compile-html', function() {
-    gulp.src('html/pages/**/*.html')
+    gulp.src('./dev/html/pages/**/*.html')
         .pipe(panini({
-        root: 'html/pages/',
-        layouts: 'html/layouts/',
-        partials: 'html/includes/',
-        helpers: 'html/helpers/',
-        data: 'html/data/'
+        root: './dev/html/pages/',
+        layouts: './dev/html/layouts/',
+        partials: './dev/html/includes/',
+        helpers: './dev/html/helpers/',
+        data: './dev/html/data/'
     }))
         .pipe(gulp.dest('_site'))
         .on('finish', browser.reload);
 });
-
+/* Resetando HTML */
 gulp.task('compile-html:reset', function(done) {
     panini.refresh();
     done();
 });
-
-// Compile js from node modules
+/* Compilando arquivos JS do Node */
 gulp.task('compile-js', function() {
     return gulp.src([ 
         nodepath + 'jquery/dist/jquery.min.js', 
         nodepath + 'feather-icons/dist/feather.min.js',
     ])
+        .pipe(concat('libs.js'))
+        .pipe(gulp.dest('./_site/assets/js/'));
+});
+/* Compilando arquvios JS da Aplicação */
+gulp.task('copy-js', function() {
+    gulp.src('./dev/assets/js/**/*.js')
         .pipe(concat('app.js'))
         .pipe(gulp.dest('./_site/assets/js/'));
 });
-
-//Copy Theme js to production site
-gulp.task('copy-js', function() {
-    gulp.src('js/**/*.js')
-        .pipe(gulp.dest('./_site/assets/js/'));
-});
-
-//Copy images to production site
+/* Copiando imagens para produção */
 gulp.task('copy-images', function() {
-    gulp.src('images/**/*')
+    gulp.src('./dev/images/**/*')
         .pipe(gulp.dest('./_site/assets/images/'));
 });
 
+/* ============== Configurações Gerais ============== */
 gulp.task('init', ['setupBulma']);
 gulp.task('build', ['clean','copy','compile-js', 'copy-js', 'compile-sass', 'compile-scss', 'compile-html', 'copy-images']);
 gulp.task('default', ['server', 'watch']);

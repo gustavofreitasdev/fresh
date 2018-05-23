@@ -1,17 +1,19 @@
 {
-  "name": "fresh-starter",
+  "name": "gusta-template-front",
   "version": "0.0.1",
-  "description": "Starter bundled with bulma.io",
+  "description": "Front-end otimizado utilizando NPM e Gulp",
   "main": "Gruntfile.js",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "browser-sync": "^2.18.13",
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.8",
     "jquery": "~3",
     "mq4-hover-shim": "^0.3.0",
     "panini": "^1.3.0",
@@ -33,7 +35,7 @@
     "url": "https://github.com/cssninjaStudio/fresh/issues",
     "email": "support@cssninja.io"
   },
-  "author": "Css Ninja <hello@cssninja.io> (https://cssninja.io)",
+  "author": "Css Ninja <hello@cssninja.io> (https://cssninja.io), Gustavo F Silva <gustavofsilva.dev@gmail.com> (https://gustadev.com",
   "license": "MIT",
   "private": true,
   "dependencies": {

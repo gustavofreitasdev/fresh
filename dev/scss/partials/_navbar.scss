@@ -15,10 +15,10 @@ Navbar
         box-shadow: none !important;
     }
     //Responsive menu icon
-    .navbar-burger {
-        width: 4rem;
-        height: 4rem;
-    }
+    // .navbar-burger {
+    //     width: 4rem;
+    //     height: 4rem;
+    // }
     //Brand
     .navbar-brand {
         min-height: 4rem;
@@ -37,7 +37,7 @@ Navbar
         align-items: center;
     }
     //Navbar items
-    .navbar-item {
+    .navbar-item, .navbar-burger {
         color: $muted-grey;
         &.is-secondary {
             &:hover {
@@ -48,6 +48,7 @@ Navbar
             padding: 10px 0;
             .navbar-link {
                 color: $muted-grey;
+                padding-right: 2em;
                 &:after {
                     top: 55%;
                     height: 0.5em;
